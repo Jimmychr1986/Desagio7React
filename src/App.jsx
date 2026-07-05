@@ -1,17 +1,20 @@
 import './App.css';
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useContext } from "react";
+
 import Navbar from './Components/Navbar';
 import Footer  from './Components/Footer';
-import Pizza from './Pages/Home';
-import Pizza from './Pages/Register';
-import Pizza from './Pages/Login';
-import Pizza from './Pages/Cart';
+import Home from './Pages/Home';
+import Register from './Pages/Register';
+import Login from './Pages/Login';
+import Cart  from './Pages/Cart';
 import Pizza from './Pages/Pizza';
-import Pizza from './Pages/Profile';
-import Pizza from './Pages/NotFound';
+import Profile from './Pages/Profile';
+import NotFound from './Pages/NotFound';
 import { UserContext } from "./context/UserContext";
 
 const App = () => {
+  const { token } = useContext(UserContext);
   return (
     <div>
       <Navbar />

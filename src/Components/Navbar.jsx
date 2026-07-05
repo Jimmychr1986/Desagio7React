@@ -1,40 +1,39 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { Link } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 const Navbar = () => {
-  const total = 25000;
-  const token = false; 
-
-  
-
+  const { totalAmount } = useContext(CartContext);
+  const { token, logout } = useContext(UserContext);
   const formattedTotal = total.toLocaleString('es-CL');
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4 justify-content-between">
       <div className="d-flex align-items-center">
-        <span className="navbar-brand text-white me-3">¡Pizzería Mamma Mia!</span>
+        <Link to="/" className="navbar-brand text-white me-3">¡Pizzería Mamma Mia!</Link>
         <div className="d-flex gap-2">
-          <button className="btn btn-outline-white btn-sm text-white border-white">
+          <Link to="/" className="btn btn-outline-white btn-sm text-white border-white">
             <i className="fa-regular fa-house"></i> Home 
-          </button>
+          </Link>
 
           {token ? (
             <>
-              <button className="btn btn-outline-white btn-sm text-white border-white">
+              <Link to="/profile" className="btn btn-outline-white btn-sm text-white border-white">
                 <i className="fa-solid fa-lock-open"></i> Profile 
-              </button>
-              <button className="btn btn-outline-white btn-sm text-white border-white">
+              </Link>
+              <button onClick={logout} className="btn btn-outline-white btn-sm text-white border-white">
                 <i className="fa-solid fa-right-from-bracket"></i> Logout 
               </button>
             </>
           ) : (
             <>
-              <button className="btn btn-outline-white btn-sm text-white border-white">
+              <Link to="/login" className="btn btn-outline-white btn-sm text-white border-white">
                 <i className="fa-regular fa-user"></i> Login
-              </button>
-              <button className="btn btn-outline-white btn-sm text-white border-white">
+              </Link>
+              <Link to="register" className="btn btn-outline-white btn-sm text-white border-white">
                 <i className="fa-solid fa-lock"></i> Registro
-              </button>
+              </Link>
             </>
           )}
         </div>
