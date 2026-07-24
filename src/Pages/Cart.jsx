@@ -1,10 +1,37 @@
-import React, { useContext } from 'react'; 
+import React, { useContext, useState} from 'react'; 
 import { CartContext } from "../context/CartContext"; 
 import { UserContext } from "../context/UserContext";
 
 const Cart = () => {
   const { cart, increaseCount, decreaseCount, totalAmount } = useContext(CartContext);
   const { token } = useContext(UserContext); 
+  const [successMessage, setSuccessMessage] = useState("");
+
+const handlePayment = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/checkouts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, 
+        },
+        body: JSON.stringify({
+          cart: cart, 
+        }),
+      });
+
+      if (response.ok) {
+        setSuccessMessage("¡Compra realizada con éxito! Tu pizza va en camino. 🍕");
+        
+        if (clearCart) clearCart(); 
+      } else {
+        alert("Hubo un error al procesar el pago. Inténtalo de nuevo.");
+      }
+    } catch (error) {
+      console.error("Error en la petición de checkout:", error);
+      alert("Error de conexión con el servidor.");
+    }
+  };
 
   return (
     <div className="container my-5 shadow p-4 rounded bg-white" style={{ maxWidth: '600px' }}>

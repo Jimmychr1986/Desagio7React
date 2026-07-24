@@ -1,8 +1,13 @@
-import useState  from "react"
+import {useState, useContext}  from "react"
+import {userContext} from "../Context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    const { login } = useContext(UserContext);
+    const navigate = useNavigate();
   
     const handleSumit =(e) =>{
       e.preventDefault()
@@ -34,12 +39,10 @@ const Login = () => {
       <div className="form-group mb-3">
       <label className="form-label">Email</label>
       <input
-
-      // Correo
       
       type="email"
       className="form-control"
-      name="{email}"
+      name="email"
       value={email}
       placeholder="Ingresa tu Correo"
       onChange={(e) => setEmail(e.target.value)}
@@ -51,11 +54,11 @@ const Login = () => {
       <div className="form-group mb-3">
       <label className="form-label">Contraseña</label>
         <h2>Password</h2>
-      {/* Contraseña */}
+
       <input
       type="password"
       className="form-control"
-      name="{password}"
+      name="password"
       value={password}
       placeholder="Ingresa tu Contraseña"
       onChange={(e) => setPassword(e.target.value)}
@@ -64,7 +67,7 @@ const Login = () => {
 </div>
 
         <div style={{ marginTop: "10px" }}>
-          <button type="submit" className="btn btn-primary">Register</button>
+          <button type="submit" className="btn btn-primary">Iniciar Sesion</button>
         </div>
 
     </form>

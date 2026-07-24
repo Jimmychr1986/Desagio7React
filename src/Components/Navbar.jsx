@@ -31,7 +31,7 @@ const Navbar = () => {
               <Link to="/login" className="btn btn-outline-white btn-sm text-white border-white">
                 <i className="fa-regular fa-user"></i> Login
               </Link>
-              <Link to="register" className="btn btn-outline-white btn-sm text-white border-white">
+              <Link to="/register" className="btn btn-outline-white btn-sm text-white border-white">
                 <i className="fa-solid fa-lock"></i> Registro
               </Link>
             </>
